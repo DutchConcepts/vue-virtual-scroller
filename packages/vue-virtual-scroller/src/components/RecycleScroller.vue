@@ -213,6 +213,15 @@ export default {
     this.removeListeners()
   },
 
+  activated () {
+    const lastPosition = this.$_lastUpdateScrollPosition
+    if (typeof lastPosition === 'number') {
+      this.$nextTick(() => {
+        this.scrollToPosition(lastPosition)
+      })
+    }
+  },
+
   methods: {
     addView (pool, index, item, key, type) {
       const nr = markRaw({
